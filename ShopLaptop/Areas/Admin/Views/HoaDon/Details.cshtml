@@ -1,0 +1,122 @@
+﻿@model IEnumerable<ShopLaptop.Models.DBContext.OrderDetail>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header"><h2 class="text-center font-weight-light my-4"><strong>Thông tin đơn hàng @ViewBag.MaHoaDon</strong></h2></div>
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    Mã sản phẩm
+                                </th>
+                                <th>
+                                    Tên sản phẩm
+                                </th>
+                                <th>
+                                    Số lượng
+                                </th>
+                                <th>
+                                    Đơn giá
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MaSP)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TenSP)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Soluong)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DonGia)
+                                    </td>
+                                </tr>
+                            }
+                            @* Sử dụng ViewBag ??? Thế này thì chết dở òi.*@
+                        </table>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputFirstName"><strong>Tên khách hàng</strong></label>
+                                    <div class="form-control py-4">@ViewBag.CTDonhang.TenKH</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputFirstName"><strong>Số điện thoại</strong></label>
+                                    <div class="form-control py-4">@ViewBag.CTDonhang.Sdt</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputEmailAddress"><strong>Địa chỉ giao hàng</strong></label>
+                            <div class="form-control py-4">@ViewBag.CTDonhang.DiaChi</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputEmailAddress"><strong>Ghi Chú</strong></label>
+                            <div class="form-control py-4">@ViewBag.CTDonhang.GhiChu</div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputFirstName"><strong>Ngày đặt hàng</strong></label>
+                                    <div class="form-control py-4">@ViewBag.CTDonhang.NgayDat</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputFirstName"><strong>Ngày giao hàng</strong></label>
+                                    <div class="form-control py-4">@ViewBag.NgayGiaoHang</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputFirstName"><strong>Tông thanh toán</strong></label>
+                                    <div class="form-control py-4">@ViewBag.TongTien</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            @if (@ViewBag.CTDonhang.TinhTrang == false)
+                            {
+                            <a href="@Url.Action("Edit", "HoaDon", new { MaHD = @ViewBag.MaHoaDon })" class="btn btn-primary">Chỉnh sửa thông tin đơn hàng</a>
+                                @*@Html.ActionLink("Chỉnh sửa thông tin đơn hàng", "Edit", "HoaDon", new { MaHD = @ViewBag.MaHoaDon, @class = "btn btn-primary", @style = "" })*@
+                                @Ajax.ActionLink("Xác nhận đã xử lý đơn hàng", "XacNhanDonHang", new { MaHD = @ViewBag.MaHoaDon }, new AjaxOptions
+                                {
+                                    Confirm = "Hóa đơn này đã được giao cho khách hàng ?",
+                                    OnComplete = $"alert('Đã xử lý thành công hóa đơn : {@ViewBag.MaHoaDon}'); window.location.href = '{Url.Action("Index", "HoaDon")}'",
+                                }, new { @class = "btn btn-success" })
+                            }
+
+                            @Ajax.ActionLink("Xóa đơn hàng", "Delete", new { MaHD = @ViewBag.MaHoaDon }, new AjaxOptions
+                               {
+                                   Confirm = "Bạn có muốn xóa hóa đơn này ?",
+                                   OnComplete = $"alert('Đã xoá thành công hóa đơn : {@ViewBag.MaHoaDon}'); window.location.href = '{Url.Action("Index", "HoaDon")}'",
+                                   HttpMethod = "Post",
+                               }, new { @class = "btn btn-danger" })
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

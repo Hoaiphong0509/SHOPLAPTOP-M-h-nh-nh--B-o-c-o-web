@@ -1,0 +1,36 @@
+﻿@using ShopLaptop.Models.DBContext;
+@using ShopLaptop.Models;
+
+<div class="col-lg-3 col-md-8 col-12">
+    <!--sidebar banner-->
+    <div class="sidebar_widget banner mb-35">
+        <div class="banner_img mb-35">
+            <a href="#"><img src="~/Assets/Image/Banner/banner_1.jpg" alt=""></a>
+        </div>
+        <div class="banner_img">
+            <a href="#"><img src="~/Assets/Image/Banner/banner_2.jpg" alt=""></a>
+        </div>
+    </div>
+    <!--sidebar banner end-->
+    <!--categorie menu start-->
+    <div  class="Mysiderbar catrgorie mb-35">
+        <h3 style="font-family:monospace;">Thương hiệu</h3>
+        <ul>
+            @foreach (Category category in (List<Category>)ViewBag.Categorys)
+            {
+                <li><a style="font-family:monospace;" href="@Url.Action("ShowByBrand", "Main", new { @brand = category.Name})"><i style="margin-right: 3px;" class="fa fa-caret-right"></i>@category.Name</a></li>
+            }
+        </ul>
+    </div>
+    <!--categorie menu end-->
+    <!--sidebar banner-->
+    <div class="sidebar_widget bottom ">
+        <div class="banner_img">
+            <a href="#"><img src="~/Assets/Image/Banner/banner_3.jpg" alt=""></a>
+        </div>
+    </div>
+    <!--sidebar banner end-->
+
+
+
+</div>

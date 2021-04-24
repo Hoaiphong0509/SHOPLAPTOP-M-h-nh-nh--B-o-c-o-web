@@ -1,0 +1,142 @@
+﻿@model ShopLaptop.Models.DBContext.Product
+@using ShopLaptop.Models.DBContext;
+@using ShopLaptop.Models;
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-lg-9 col-md-12">
+    <div class="row">
+        <div class="col-lg-6 col-md-6">
+            <div class="product_tab sidebar fix">
+
+                <div class="tab-content produc_tab_c">
+                    <div class="tab-pane fade show active" id="p_tab1" role="tabpanel">
+                        <div class="modal_img">
+                            <a href="#"><img src="@Url.Content(Model.Image)" alt=""></a>
+                            <div class="img_icone">
+                                <img src="@Url.Content(Model.Image)" alt="">
+                            </div>
+                            <div class="view_img">
+                                <a class="large_view" href="@Url.Content(Model.Image)"><i class="fa fa-search-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="product_d_right">
+                <h1>@Model.Name</h1>
+                <div class="content_price mb-15">
+                    <span>Màn hình - </span>
+                    <span style="font-size: 18px; font-weight: normal !important;">@Model.Screen</span>
+                </div>
+                <div class="content_price mb-15">
+                    <span>CPU - </span>
+                    <span style="font-size: 18px; font-weight: normal !important;" class="">@Model.CPU</span>
+                </div>
+                <div class="content_price mb-15">
+                    <span>RAM - </span>
+                    <span style="font-size: 18px; font-weight: normal !important;" class="">@Model.RAM</span>
+                </div>
+                <div class="content_price mb-15">
+                    <span>Card đồ họa - </span>
+                    <span style="font-size: 18px; font-weight: normal !important;" class="">@Model.Card</span>
+                </div>
+                <div class="content_price mb-15">
+                    <span>Ổ cứng - </span>
+                    <span style="font-size: 18px; font-weight: normal !important;" class="">@Model.Disk</span>
+                </div>
+                <div class="content_price mb-15">
+                    <span>Tình trạng - </span>
+                    @if (Model.Quantity == 0)
+                    {
+                        <span style="font-size: 18px; font-weight: normal !important;" class="">Hết hàng</span>
+                    }
+                    else
+                    {
+                        <span style="font-size: 18px; font-weight: normal !important;" class="">Còn hàng</span>
+                    }
+                </div>
+                <div class="box_quantity mb-20">
+                    @if (Model.Quantity == 0)
+                    {
+                        <a style="background: red;" href="#"><i class="fa fa-shopping-cart"></i>Hết hàng</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("ThemGioHang", "Card", new { @ID = Model.ID, @url = Request.Url.ToString()})" type="submit"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                    }
+
+                </div>
+
+                <div class="product_stock mb-20">
+                    <p></p>
+                    <span>Hàng chính hảng</span>
+                </div>
+                <div class="wishlist-share">
+                    <h4>Chia sẻ:</h4>
+                    <ul>
+                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                        <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
+                        <li><a href="#"><i class="fa fa-tumblr"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--Related Products area start-->
+    <div class="new_product_area">
+        <div class="block_title">
+            <h3>Sản phẩm tương tự</h3>
+        </div>
+        <div class="row">
+            <div class="product_active owl-carousel">
+                @foreach (var item in ViewBag.RelatedProducts)
+                {
+                    if (item.Brand == Model.Brand)
+                    {
+                        <div class="col-lg-3">
+                            <div class="single_product">
+                                <div class="product_thumb">
+                                    <a href="#"><img src="@Url.Content(item.Image)" alt=""></a>
+                                    <div class="img_icone" style="width: 252px !important; height: 250px !important;">
+                                        <img style="background-size:cover; width: 252px !important; height: 100%!important;" src="@Url.Content(item.Image)" alt="">
+                                    </div>
+                                    <div class="product_action">
+                                        @if (item.Quantity == 0)
+                                        {
+                                            <a style="background: red;" href="#"><i class="fa fa-shopping-cart"></i>Hết hàng</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("ThemGioHang", "Card", new { @masp = Model.Code, @url = Request.Url.ToString()})"> <i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                        }
+
+                                    </div>
+                                </div>
+                                <div class="product_content">
+                                    <span class="product_price">@item.Price</span>
+                                    <h3 class="product_title"><a href="single-product.html">@item.Name</a></h3>
+                                </div>
+                                <div class="product_info">
+                                    <ul>
+                                        <li><a href="@Url.Action("Details", new { ID = item.ID})">Chi tiết</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <!--Related Products area end-->
+
+</div>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ShopLaptop.Models.DBContext.User>
+
+@{
+    ViewBag.Title = "Danh sách nhân viên";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="margin: 4rem;" >Danh sách nhân viên</h1>
+<p>
+    <a style="margin-left: 4rem;font-size: 18px;" href="@Url.Action("Create","User")" class="btn btn-dark">Thêm mới người dùng</a>
+</p>
+<div style="padding: 4rem;">
+    <table class="table table-bordered">
+        <tr class="thead-dark" style="font-size: 19px;">
+            <th>
+                Tài khoản
+            </th>
+            <th>
+                Họ tên
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            <th>
+                Quyền
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="row_@item.ID">
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                @if (item.Permission == 1)
+                {
+                    <td>Admin</td>
+                }
+                else
+                {
+                    <td>Nhân viên</td>
+                }
+            <td style="text-align:center;">
+                @*@Html.ActionLink("Sửa", "Edit", new { ID = @item.ID }) |*@
+                @Html.ActionLink("Chi tiết", "Details", new { ID = @item.ID }, new { @class = "btn btn-primary" })
+                @*@Html.ActionLink("Xóa", "Delete", new { ID = @item.ID } )*@
+                @Ajax.ActionLink("Xóa", "Delete", new { @ID = item.ID }, new AjaxOptions
+                {
+                    Confirm = "Bạn có muốn xóa nhân viên này ?",
+                    OnComplete = $"$('.row_{@item.ID}').remove();" +
+                    $"alert('Đã xoá thành công nhân viên : {@item.Name}');",
+                    HttpMethod = "Post",
+                }, new { @class = "btn btn-danger" })
+            </td>
+            </tr>
+        }
+
+    </table>
+</div>

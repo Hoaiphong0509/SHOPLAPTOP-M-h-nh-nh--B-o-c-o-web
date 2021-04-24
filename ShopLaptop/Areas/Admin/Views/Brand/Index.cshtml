@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ShopLaptop.Models.DBContext.Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="margin: 4rem;">Các thương hiệu</h1>
+
+<p>
+    <a style="margin-left: 4rem;font-size: 18px;" href="@Url.Action("Create","Brand")" class="btn btn-dark">Thêm thương hiệu</a>
+</p>
+<div style="padding: 4rem;">
+    <table class="table table-bordered">
+        <tr  class="thead-dark" style="font-size: 19px;">
+            <th>
+                Thương hiệu
+            </th>
+            <th>
+                Ngày tạo
+            </th>
+            <th>
+                Tạo bởi
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="row_@item.ID">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                </td>
+                <td style="text-align:center;">
+                    @Ajax.ActionLink("Xóa", "Delete", new { @ID = item.ID }, new AjaxOptions
+                    {
+                        Confirm = "Bạn có muốn xóa thương hiệu này ?",
+                        OnComplete = $"$('.row_{@item.ID}').remove();" +
+                        $"alert('Đã xoá thành công thương hiệu : {@item.Name}');",
+                        HttpMethod = "Post",
+                    },  new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

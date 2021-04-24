@@ -1,0 +1,85 @@
+﻿@model IEnumerable<ShopLaptop.Models.DBContext.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="margin: 4rem;">Danh sách sản phẩm</h2>
+
+<p>
+    <a style="margin-left: 4rem;font-size: 18px;" href="@Url.Action("Create","Product")" class="btn btn-dark">Thêm sản phẩm</a>
+</p>
+<div style="padding: 4rem;">
+    <table class="table table-bordered">
+        <tr class="thead-dark" style="font-size: 19px;">
+            <th>
+                Tên sản phẩm
+            </th>
+            <th>
+                Mã sản phẩm
+            </th>
+            <th>
+                Giá
+            </th>
+            <th>
+                Số lượng
+            </th>
+            <th>
+                Ngày tạo
+            </th>
+            <th>
+                Tạo bởi
+            </th>
+            <th>
+                Ngày sửa
+            </th>
+            <th>
+                Sửa bởi
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="row_@item.ID">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModifiedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ModifiedBy)
+                </td>
+                <td style="text-align:center;">
+                    @Html.ActionLink("Sửa", "Edit", new { ID = item.ID }, new { @class = "btn btn-primary" }) 
+                    @Html.ActionLink("Chi tiết", "Details", new { ID = item.ID }, new { @class = "btn btn-info" })
+                    @Ajax.ActionLink("Xóa", "Delete", new { @ID = item.ID }, new AjaxOptions
+                   {
+                       Confirm = "Bạn có muốn xóa sản phẩm này ?",
+                       OnComplete = $"$('.row_{@item.ID}').remove();" +
+                       $"alert('Đã xoá thành công sản phẩm : {@item.Name}');",
+                       HttpMethod = "Post",
+                   },  new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

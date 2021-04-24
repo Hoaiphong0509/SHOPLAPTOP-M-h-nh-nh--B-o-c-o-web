@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ShopLaptop.Models.DBContext.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="margin: 4rem;">DANH SÁCH CÁC ĐƠN HÀNG CHƯA XỬ LÝ</h2>
+
+<div style="padding: 4rem;">
+    <table class="table table-bordered">
+        <tr class="thead-dark" style="font-size: 19px;">
+            <th>
+                Mã Hóa Đơn
+            </th>
+            <th>
+                Tình trạng đơn hàng
+            </th>
+            <th>
+                Ngày đặt hàng
+            </th>
+            <th>
+                Tên khách hàng
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class=".row_@item.MaDH">
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaDH)
+                </td>
+                <td>
+                    @if (item.TinhTrang == false)
+                    {
+                        <p>Chưa xử lý</p>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayDat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenKH)
+                </td>
+                <td>
+                    @Html.ActionLink("Chi tiết", "Details", new { MaHD = item.MaDH }, new { @class = "btn btn-primary" })
+                    @Ajax.ActionLink("Xóa", "Delete", new { MaHD = item.MaDH }, new AjaxOptions
+                      {
+                          Confirm = "Bạn có muốn xóa hóa đơn này ?",
+                          OnComplete = $"$('.row_{@item.MaDH}').remove();" +
+                          $"alert('Đã xoá thành công hóa đơn : {@item.MaDH}');",
+                          HttpMethod = "Post",
+                      }, new { @class = "btn btn-danger" })
+                    @*@Html.ActionLink("Xóa", "Delete", new { MaDH = item.MaDH })*@
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>
+    

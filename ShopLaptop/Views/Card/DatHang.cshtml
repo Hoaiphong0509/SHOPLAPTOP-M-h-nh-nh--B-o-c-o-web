@@ -1,0 +1,83 @@
+﻿@using ShopLaptop.Models;
+@using ShopLaptop.Models.DBContext;
+@{
+    ViewBag.Title = "DatHang";
+    Layout = "~/Views/Shared/_Layout_2.cshtml";
+}
+
+
+<!--Checkout page section-->
+<div class="Checkout_section">
+    <div class="checkout_form">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                @using (Html.BeginForm("DatHang"))
+                {
+                    <h3 style="font-family: monospace;">Thông tin đặt hàng</h3>
+                    <div class="row">
+
+                        <div class="col-lg-6 mb-30">
+                            <label>Họ tên <span>*</span></label>
+                            @Html.TextBox("tenKH","", new { @placeholder = "Nhập tên của bạn"})
+                            <p class="text-danger">@ViewData["err1"]</p>
+                        </div>
+                        <div class="col-12 mb-30">
+                            <label>Số điện thoại <span>*</span></label>
+                            @Html.TextBox("sdt", "", new { @placeholder = "Nhập số điện thoại" })
+                            <p class="text-danger">@ViewData["err2"]</p>
+                            <p class="text-danger">@ViewData["err3"]</p>
+                        </div>
+                        <div class="col-12 mb-30">
+                            <label>Địa chỉ <span>*</span></label>
+                            @Html.TextBox("diachi", "", new { @placeholder = "Nhận địa chỉ giao hàng" })
+                            <p class="text-danger">@ViewData["err4"]</p>
+                            @*<input placeholder="Nhận địa chỉ giao hàng" name="diachi" type="text">*@
+                        </div>
+                        <div class="col-12 mb-30">
+                            <label>Ghi chú của bạn </label>
+                            @Html.TextBox("ghichu")
+                            @*<input name="ghichu" type="text">*@
+                        </div>
+                        <div class="col-12 mb-30">
+                            <div class="">
+                                <div class="">
+                                    <input style="font-family:monospace; color:#09e3a1; font-weight: bold; width:50%; border: 2px solid #0e825f" class="btn btn-dark checkmobile" type="submit" value="ĐẶT HÀNG" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <form action="#">
+                    <h3 style="font-family: monospace;">Thông tin đơn hàng</h3>
+                    <div class="order_table table-responsive mb-30">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th>Thành tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (GioHang item in (List<GioHang>)ViewBag.listOrders)
+                                {
+                                    <tr>
+                                        <td>@item.tensp<strong> × @item.sl</strong></td>
+                                        <td>@item.gia</td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr class="order_total">
+                                    <th>Tổng cộng</th>
+                                    <td><strong>@ViewBag.TongTien</strong></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

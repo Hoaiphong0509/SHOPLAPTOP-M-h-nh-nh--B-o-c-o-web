@@ -1,0 +1,129 @@
+﻿@model IEnumerable<ShopLaptop.Models.DBContext.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-lg-9 col-md-12">
+    <!--banner slider start-->
+    <div class="banner_slider slider_1">
+        <div class="slider_active owl-carousel">
+            <div class="single_slider" style="background-image: url(../../Assets/Image/Banner/banner_big_1.jpg)">
+                <div class="slider_content">
+                    <div class="slider_content_inner">
+                        <h1 style="font-family:monospace;">Thứ bạn tìm - Chúng tôi có</h1>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            <div class="single_slider" style="background-image: url(../../Assets/Image/Banner/banner_big_2.jpg)">
+                <div class="slider_content">
+                    <div class="slider_content_inner">
+                        <h1 style="font-family:monospace;">Chinh phục mọi giới hạn</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="single_slider" style="background-image: url(../../Assets/Image/Banner/banner_big_3.jpg)">
+                <div class="slider_content">
+                    <div class="slider_content_inner">
+                        <h1 style="font-family:monospace;">Sự hài lòng của bạn là điều mong muốn của chúng tôi</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--banner slider start-->
+    <!--new product area start-->
+    <div class="new_product_area">
+        <div class="block_title">
+            <h3>LAPTOP</h3>
+        </div>
+        <div class="row">
+            <div class="product_active owl-carousel">
+                @foreach (var laptop in Model)
+                {
+                    if (laptop.Price < 22000000)
+                    {
+                        <div class="col-lg-3">
+                            <div class="single_product">
+                                <div class="product_thumb">
+                                    <a href="#"><img src="@Url.Content(@laptop.Image)" alt=""></a>
+                                    <div class="img_icone" style="width: 252px !important; height: 250px !important;">
+                                        <img style="background-size:cover; width: 252px !important; height: 100%!important;" src="@Url.Content(@laptop.Image)" alt="">
+                                    </div>
+                                    <div class="product_action">
+                                        @if (laptop.Quantity == 0)
+                                        {
+                                            <a style="background: red;" href="#"><i class="fa fa-shopping-cart"></i>Hết hàng</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("ThemGioHang", "Card", new { @ID = laptop.ID, @url = Request.Url.ToString()})" type="submit"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="product_content">
+                                    <span class="product_price">@laptop.Price</span>
+                                    <h3 class="product_title"><a href="single-product.html">@laptop.Name</a></h3>
+                                </div>
+                                <div class="product_info">
+                                    <ul>
+                                        <li><a href="@Url.Action("Details", new { ID = laptop.ID})">Chi tiết</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <!--new product area start-->
+    <!--featured product start-->
+    <div class="featured_product">
+        <div class="block_title">
+            <h3>LAPTOP</h3>
+        </div>
+        <div class="row">
+            <div class="product_active owl-carousel">
+                @foreach (var laptop in Model)
+                {
+                    if (laptop.Price >= 22000000)
+                    {
+                        <div class="col-lg-3">
+                            <div class="single_product">
+                                <div class="product_thumb">
+                                    <a href="#"><img src="@Url.Content(@laptop.Image)" alt=""></a>
+                                    <div class="img_icone" style="width: 252px !important; height: 250px !important;">
+                                        <img style="background-size:cover; width: 252px !important; height: 252px !important;" src="@Url.Content(@laptop.Image)" alt="">
+                                    </div>
+                                    <div class="product_action">
+                                        @if (laptop.Quantity == 0)
+                                        {
+                                            <a style="background: red;" href="#"><i class="fa fa-shopping-cart"></i>Hết hàng</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("ThemGioHang", "Card", new { @ID = laptop.ID, @url = Request.Url.ToString()})" type="submit"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="product_content">
+                                    <span class="product_price">@laptop.Price</span>
+                                    <h3 class="product_title"><a href="single-product.html">@laptop.Name</a></h3>
+                                </div>
+                                <div class="product_info">
+                                    <ul>
+                                        <li><a href="@Url.Action("Details", new { ID = laptop.ID})">Chi tiết</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <!--featured product end-->
+</div>

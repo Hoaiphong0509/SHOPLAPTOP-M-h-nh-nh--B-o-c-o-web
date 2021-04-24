@@ -1,0 +1,91 @@
+﻿@using ShopLaptop.Models.DBContext;
+@using ShopLaptop.Models;
+
+<!--header area -->
+<div class="header_area">
+    <!--header middel-->
+    <div class="header_middel">
+        <div class="row align-items-center">
+            <div class="col-lg-9 col-md-9">
+                <div class="header_right_info">
+                    <div class="shopping_cart">
+                        @Html.Action("GioHangPartical", "Card")
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--header middel end-->
+    <div class="header_bottom">
+        <div class="row">
+            <div class="col-12">
+                <div class="main_menu_inner">
+                    <div class="main_menu d-none d-lg-block">
+                        <nav>
+                            <ul>
+                                <li class="active">
+                                    <a style="font-family:monospace;" href="@Url.Action("Index", "Main")">Trang chủ</a>
+                                    <div class="mega_menu jewelry">
+                                        <div class="mega_items jewelry">
+                                            <ul>
+                                                <li><a style="font-family:monospace;" href="@Url.Action("FullProduct", "Main")">Sản phẩm</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a style="font-family:monospace;" href="#">Laptop</a>
+                                    <div class="mega_menu jewelry">
+                                        <div class="mega_items jewelry">
+                                            <ul>
+                                                @foreach (Category category in (List<Category>)ViewBag.Categorys)
+                                                {
+                                                    <li><a style="font-family:monospace;" href="@Url.Action("ShowByBrand", "Main", new { @brand = category.Name})">@category.Name</a></li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="mobile-menu d-lg-none">
+                        <nav>
+                            <ul>
+                                <li>
+                                    <a href="@Url.Action("Index", "Main")">Trang chủ</a>
+                                    <div>
+                                        <div>
+                                            <ul>
+                                                <li><a href="@Url.Action("Index", "FullProduct")">Sản phẩm</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="#">Laptop</a>
+                                    <div>
+                                        <div>
+                                            <ul>
+                                                <ul>
+                                                    @foreach (Category category in (List<Category>)ViewBag.Categorys)
+                                                    {
+                                                        <li><a href="@Url.Action("ShowByBrand", "Main", new { @brand = category.Name})">@category.Name</a></li>
+                                                    }
+                                                </ul>
+                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--header end -->

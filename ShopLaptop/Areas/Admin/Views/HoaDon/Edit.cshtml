@@ -1,0 +1,63 @@
+﻿@model ShopLaptop.Models.DBContext.Order
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header"><h3 class="text-center font-weight-light my-4">Chỉnh sửa thông tin sản phẩm</h3></div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Edit","HoaDon", FormMethod.Post))
+                    {
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(model=>model.MaDH)
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1"><strong>Tên khách hàng</strong></label>
+                                    @Html.EditorFor(model => model.TenKH, new { htmlAttributes = new { @class = "form-control py-4", @disabled = "true" }})
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1"><strong>Số điện thoại</strong></label>
+                                    @Html.EditorFor(model => model.Sdt, new { htmlAttributes = new { @class = "form-control py-4", @disabled = "true"} })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1"><strong>Ngày đặt hàng</strong></label>
+                                    @Html.EditorFor(model => model.NgayDat, new { htmlAttributes = new { @class = "form-control py-4", @disabled = "true" } })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label class="small mb-1" for="inputEmailAddress"><strong>Địa chỉ</strong></label>
+                            @Html.TextBoxFor(model => model.DiaChi, new { @class = "form-control py-4" })
+                        </div>
+                        <div class="form-row">
+                            <label class="small mb-1" for="inputEmailAddress"><strong>Ghi chú</strong></label>
+                              @Html.TextBoxFor(model => model.GhiChu, new { @class = "form-control py-4" })
+                        </div>
+                        <div class="form-group mt-4 mb-0">
+                            <input type="submit" value="Lưu" class="btn btn-primary btn-block" />
+                        </div>
+                    }
+                    <form>
+                    </form>
+                </div>
+                <div>
+                    @Html.ActionLink("Danh sách đơn hàng", "Index")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

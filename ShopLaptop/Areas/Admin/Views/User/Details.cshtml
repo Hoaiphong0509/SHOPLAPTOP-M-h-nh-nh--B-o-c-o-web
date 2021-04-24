@@ -1,0 +1,69 @@
+﻿@model ShopLaptop.Models.DBContext.User
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header"><h2 class="text-center font-weight-light my-4"><strong>Thông tin nhân viên</strong></h2></div>
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputFirstName"><strong> @Html.DisplayNameFor(model => model.UserName)</strong></label>
+                                    <div class="form-control py-4">@Html.DisplayFor(model => model.UserName)</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputFirstName"><strong> @Html.DisplayNameFor(model => model.Name)</strong></label>
+                                    <div class="form-control py-4">@Html.DisplayFor(model => model.Name)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputFirstName"><strong> @Html.DisplayNameFor(model => model.Email)</strong></label>
+                                    <div class="form-control py-4">@Html.DisplayFor(model => model.Email)</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputFirstName"><strong> @Html.DisplayNameFor(model => model.Phone)</strong></label>
+                                <div class="form-control py-4">@Html.DisplayFor(model => model.Phone)</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputFirstName"><strong> @Html.DisplayNameFor(model => model.Address)</strong></label>
+                            <div class="form-control py-4">@Html.DisplayFor(model => model.Address)</div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                @*<label for="per">Quyền hạn (1-Quản trị  | 2 - Nhân viên):</label>
+                                @Html.DropDownListFor(model => model.Permission, new SelectList(new int[] { 1, 2 }))*@
+                                <label class="small mb-1" for="inputFirstName"><strong> Quyền hạn (1-Quản trị  | 2 - Nhân viên):</strong></label>
+                                <div class="form-control py-4">@Html.DisplayFor(model => model.Permission)</div>
+                                <br><br>
+                            </div>
+                        </div>
+                    }
+                    <form>
+                    </form>
+                </div>
+                <div>
+                    @Html.ActionLink("Danh sách nhân viên", "Index", "Home", new { @class= "btn btn-warning", @style= "margin-left:1rem; margin-bottom:2rem" })
+                    @if (Convert.ToInt32(Session["IDUSER_SESSION"]) == Model.ID)
+                    {
+                        <a style= "margin-left:1rem; margin-bottom:2rem" class="btn btn-info" href="@Url.Action("Edit","User", new { @ID = Convert.ToInt32(Session["IDUSER_SESSION"])})">Sửa thông tin</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

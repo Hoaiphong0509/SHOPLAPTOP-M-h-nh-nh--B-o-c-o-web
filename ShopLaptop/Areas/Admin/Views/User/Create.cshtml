@@ -1,0 +1,80 @@
+﻿@model ShopLaptop.Models.DBContext.User
+@{
+    ViewBag.Title = "Thêm nhân viên";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header"><h3 class="text-center font-weight-light my-4">Thêm mới người dùng</h3></div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Create", "User", FormMethod.Post))
+                    {
+                        @Html.ValidationSummary(true, null, new { @class = "alert alert-danger" })
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputFirstName">Tài khoản</label>
+                                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control py-4", @placeholder = "Nhập tài khoản" })
+                                    @*@Html.ValidationMessageFor(model => model.UserName, null, new { @class = "alert alert-danger" })*@
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputLastName">Họ tên</label>
+                                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control py-4", @placeholder = "Nhập họ tên" })
+                                    @*@Html.ValidationMessageFor(model => model.Name, "", new { @class = "alert alert-danger" })*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputFirstName">Email</label>
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control py-4", @type = "email", @placeholder = "Nhập Email" })
+                                    @*@Html.ValidationMessageFor(model => model.Email, "", new { @class = "alert alert-danger" })*@
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputLastName">Số điện thoại</label>
+                                    @Html.TextBoxFor(model => model.Phone, new { @class = "form-control py-4", @placeholder = "Nhập số điện thoại" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputEmailAddress">Địa chỉ</label>
+                            @Html.TextBoxFor(model => model.Address, new { @class = "form-control py-4", @placeholder = "Nhập địa chỉ" })
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputPassword">Mật khẩu</label>
+                                    @Html.PasswordFor(model => model.Password, new { @class = "form-control py-4", @id = "inputPassword", @placeholder = "Nhập mật khẩu" })
+                                    @*@Html.ValidationMessageFor(model => model.Password, "", new { @class = "alert alert-danger" })*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label for="per">Quyền hạn (1-Quản trị  | 2 - Nhân viên):</label>
+                                @Html.DropDownListFor(model => model.Permission, new SelectList(new int[] { 1, 2 }))
+                                <br><br>
+                            </div>
+                        </div>
+                        <div class="form-group mt-4 mb-0">
+                            <input type="submit" value="Tạo người dùng" class="btn btn-primary btn-block" />
+                        </div>
+                    }
+                    <form>
+                    </form>
+                </div>
+                <div>
+                    @Html.ActionLink("Danh sách người dùng", "Index", "Home", new { @class="btn btn-warning", @style = "margin-left:1rem; margin-bottom:2rem" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

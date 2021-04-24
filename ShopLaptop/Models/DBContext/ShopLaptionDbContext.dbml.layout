@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 15, 9.25" name="ShopLaptionDbContext">
+  <DataContextMoniker Name="/ShopLaptionDbContextDataContext" />
+  <nestedChildShapes>
+    <classShape Id="c8f1d187-e559-4f25-8b7c-e4bfb9cf58db" absoluteBounds="12.75, 0.75, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/ShopLaptionDbContextDataContext/Slide" />
+      <nestedChildShapes>
+        <elementListCompartment Id="26efadf3-2c6d-4fbe-a83f-76c763a0bf55" absoluteBounds="12.765, 1.21, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9c7962a1-18a7-448c-a12c-83f5f391e6c1" absoluteBounds="12.75, 4.75, 2, 1.7708968098958327">
+      <DataClassMoniker Name="/ShopLaptionDbContextDataContext/SystemConfig" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5bbcb5f7-d254-4992-9e68-6e119366fcb1" absoluteBounds="12.765, 5.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8a9993e7-0eed-4e16-9c06-e2614b6bfc7c" absoluteBounds="12.75, 7.75, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/ShopLaptionDbContextDataContext/Tag" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6677b490-7f3a-402f-9fec-e45fe83621c8" absoluteBounds="12.765, 8.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d9015060-70ec-4711-9e09-6264795f9225" absoluteBounds="2.625, 0.5, 2, 3.1170068359375">
+      <DataClassMoniker Name="/ShopLaptionDbContextDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6d9279d2-92f8-4f13-8f18-058f05fe79e8" absoluteBounds="2.6399999999999997, 0.96, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="30fbe475-f53b-4c0d-8b44-9ba8674ad856" absoluteBounds="0.5, 0.5, 2, 4.0785139973958326">
+      <DataClassMoniker Name="/ShopLaptionDbContextDataContext/Product" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ac61a700-3bda-4dc7-ad7d-2fe8f202be8a" absoluteBounds="0.51499999999999968, 0.96000000000000085, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1c5e3502-ee0f-4fdb-91d8-aee703404801" absoluteBounds="6.875, 0.5, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/ShopLaptionDbContextDataContext/Order" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ac61ddfd-275a-41e0-9218-400a0dbe0c84" absoluteBounds="6.89, 0.96, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d98dfebf-eabe-498b-8c24-e8a10b15f3a1" absoluteBounds="6.875, 3, 2, 1.9631982421875">
+      <DataClassMoniker Name="/ShopLaptionDbContextDataContext/OrderDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f7f80b58-17f3-4769-afaa-bdb67ba677a0" absoluteBounds="6.8900000000000006, 3.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="aa53ce02-aaab-48f9-9665-d35b45178f95" absoluteBounds="4.75, 0.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/ShopLaptionDbContextDataContext/Category" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8a095f4d-8493-4f9c-983a-bf5105421156" absoluteBounds="4.765, 0.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

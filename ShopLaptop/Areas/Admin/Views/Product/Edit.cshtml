@@ -1,0 +1,151 @@
+﻿@model ShopLaptop.Models.DBContext.Product
+@using ShopLaptop.Models;
+@using ShopLaptop.Models.DBContext;
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header"><h3 class="text-center font-weight-light my-4">Chỉnh sửa thông tin sản phẩm</h3></div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, null, new { @class = "alert alert-danger" })
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "small mb-1" })
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control py-4" } })
+                                    @*@Html.ValidationMessageFor(model => model.UserName, null, new { @class = "alert alert-danger" })*@
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "small mb-1" })
+                                    @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control py-4l" } })
+                                    @*@Html.ValidationMessageFor(model => model.Name, "", new { @class = "alert alert-danger" })*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "small mb-1" })
+                                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control py-4" } })
+                                    @*@Html.ValidationMessageFor(model => model.Email, "", new { @class = "alert alert-danger" })*@
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Brand, htmlAttributes: new { @class = "small mb-1" })
+                                    <select name="Brand">
+
+                                        @foreach (Category category in (List<Category>)ViewBag.Categorys)
+                                        {
+                                            if (Model.Brand.Trim().Equals(category.Name))
+                                            {
+                                                <option value="@category.Name" selected>@category.Name</option>
+
+                                            }
+                                            else
+                                            {
+                                                <option value="@category.Name">@category.Name</option>
+                                            }
+
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Screen, htmlAttributes: new { @class = "small mb-1" })
+                                    @Html.EditorFor(model => model.Screen, new { htmlAttributes = new { @class = "form-control py-4" } })
+                                    @*@Html.ValidationMessageFor(model => model.UserName, null, new { @class = "alert alert-danger" })*@
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CPU, htmlAttributes: new { @class = "small mb-1" })
+                                    @Html.EditorFor(model => model.CPU, new { htmlAttributes = new { @class = "form-control py-4l" } })
+                                    @*@Html.ValidationMessageFor(model => model.Name, "", new { @class = "alert alert-danger" })*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.RAM, htmlAttributes: new { @class = "small mb-1" })
+                                    @Html.EditorFor(model => model.RAM, new { htmlAttributes = new { @class = "form-control py-4" } })
+                                    @*@Html.ValidationMessageFor(model => model.UserName, null, new { @class = "alert alert-danger" })*@
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Card, htmlAttributes: new { @class = "small mb-1" })
+                                    @Html.EditorFor(model => model.Card, new { htmlAttributes = new { @class = "form-control py-4l" } })
+                                    @*@Html.ValidationMessageFor(model => model.Name, "", new { @class = "alert alert-danger" })*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Disk, htmlAttributes: new { @class = "small mb-1" })
+                                    @Html.EditorFor(model => model.Disk, new { htmlAttributes = new { @class = "form-control py-4" } })
+                                    @*@Html.ValidationMessageFor(model => model.UserName, null, new { @class = "alert alert-danger" })*@
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "small mb-1" })
+                                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control py-4" } })
+                                    @*@Html.ValidationMessageFor(model => model.Name, "", new { @class = "alert alert-danger" })*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "small mb-1" })
+                                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control py-4" } })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputFirstName"><strong> Ảnh sản phẩm:</strong></label>
+                                <br><br>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <img src="@Url.Content(Model.Image)" class="img_product" />
+                                </div>
+                            </div>
+                        </div>
+                        <label class="" for="">Ảnh mới sản phẩm</label>
+                        <div class="">
+                            <input type="file" name="Image" id="Image" style="width:100%;" />
+                        </div>
+                        <div class="form-group mt-4 mb-0">
+                            <input type="submit" value="Lưu" class="btn btn-primary btn-block" />
+                        </div>
+                    }
+                    <form>
+                    </form>
+                </div>
+                <div>
+                    @Html.ActionLink("Danh sách", "Index", "Product", new { @class = "btn btn-warning", @style = "margin-left:1rem; margin-bottom:2rem" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

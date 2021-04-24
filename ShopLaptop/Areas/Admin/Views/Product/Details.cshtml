@@ -1,0 +1,117 @@
+﻿@model ShopLaptop.Models.DBContext.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header"><h2 class="text-center font-weight-light my-4"><strong>Thông tin sản phẩm</strong></h2></div>
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputFirstName"><strong>Tên sản phẩm</strong></label>
+                                    <div class="form-control py-4">@Html.DisplayFor(model => model.Name)</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputFirstName"><strong>Mã sản phẩm</strong></label>
+                                    <div class="form-control py-4">@Html.DisplayFor(model => model.Code)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputFirstName"><strong>Thương hiệu</strong></label>
+                                    <div class="form-control py-4">@Html.DisplayFor(model => model.Brand)</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputFirstName"><strong>Giá</strong></label>
+                                <div class="form-control py-4">@Html.DisplayFor(model => model.Price)</div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputFirstName"><strong>Màn hình</strong></label>
+                                    <div class="form-control py-4">@Html.DisplayFor(model => model.Screen)</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputFirstName"><strong>CPU</strong></label>
+                                <div class="form-control py-4">@Html.DisplayFor(model => model.CPU)</div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputFirstName"><strong>RAM</strong></label>
+                                    <div class="form-control py-4">@Html.DisplayFor(model => model.RAM)</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputFirstName"><strong>Card đồ họa</strong></label>
+                                <div class="form-control py-4">@Html.DisplayFor(model => model.Card)</div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputFirstName"><strong>Ổ cứng</strong></label>
+                                    <div class="form-control py-4">@Html.DisplayFor(model => model.Disk)</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputFirstName"><strong>Loại</strong></label>
+                                    <div class="form-control py-4">@Html.DisplayFor(model => model.Description)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputFirstName"><strong>Số lượng</strong></label>
+                                @if (Model.Quantity == 0)
+                                {
+                                    <div class="form-control py-4">Hết hàng</div>
+                                }
+                                else
+                                {
+                                    <div class="form-control py-4">@Html.DisplayFor(model => model.Quantity)</div>
+                                }
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputFirstName"><strong> Ảnh sản phẩm:</strong></label>
+                                <br><br>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <img src="@Url.Content(Model.Image)" class="img_product" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <form>
+                    </form>
+                </div>
+                <div>
+                    @Html.ActionLink("Danh sách sản phẩm ", "Index", "Product", new { @class = "btn btn-warning", @style = "margin-left:1rem; margin-bottom:2rem" })
+                    @Html.ActionLink("Sửa", "Edit", new { @ID = Model.ID }, new { @class = "btn btn-info", @style = "margin-left:1rem; margin-bottom:2rem" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

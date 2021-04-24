@@ -1,0 +1,62 @@
+﻿@using ShopLaptop.Models;
+@model List<GioHang>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_2.cshtml";
+}
+<h2 style="font-family:monospace;">THÔNG TIN GIỎ HÀNG</h2>
+<div style="margin-left: 1rem;">
+    <table align="center" border="1">
+        <tr style="text-align:center; font-weight: bold; font-size: 20px;">
+            <td style="font-family: monospace; padding-left: 20px; padding-right: 20px; padding-top: 20px; padding-bottom: 20px;">Tên sản phẩm</td>
+            <td style="font-family:monospace;" width="300px">Ảnh bìa</td>
+            <td style="font-family:monospace;">Số lượng</td>
+            <td style="font-family:monospace;">Đơn giá</td>
+            <td style="font-family:monospace;">Thành tiền</td>
+            <td width="150px"></td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr style="text-align:center; font-weight: bold;">
+                <td><a style="margin:0.4rem; font-size: 20px" href="@Url.Action("Details","Main", new { @ID = item._ID})">@item.tensp</a></td>
+                <td><img style="background-size:cover; width: 180px; height: 180px; margin: 2rem;" src="@Url.Content(item.anhsp)" /></td>
+                @using (Html.BeginForm("CapNhatGioHang", "Card", new { @ID = item._ID }))
+                {
+                    <td>
+                        <input style="margin:4rem; width:80px;" type="number" min="1" name="txtSoluong" value="@item.sl" />
+                    </td>
+                    <td style="padding:4rem; width:80px;font-size: 18px; ">@String.Format("{0:0,0}", item.gia)</td>
+                    <td style="padding:4rem; width:80px; color:#1aa35a; font-size: 18px;">@String.Format("{0:0,0}", item.thanhtien)</td>
+                    <td>
+                        <a class="btn btn-info" style="width:100px;" href="@Url.Action("XoaGioHang", "Card", new { ID = item._ID})">Xóa</a>
+                        <input class="btn btn-info" style="width:100px;" type="submit" value="Cập nhật" />
+                    </td>
+                }
+
+            </tr>
+
+        }
+    </table>
+</div>
+
+<div style="margin-top: 3rem;" class="col-lg-6 col-md-6">
+    <div class="coupon_code">
+        <h3 style="font-family:monospace;">TỔNG THANH TOÁN</h3>
+        <div class="coupon_inner">
+            <div class="cart_subtotal">
+                <p style="font-family:monospace;">Số lượng sản phẩm</p>
+                <p class="cart_amount">@ViewBag.TongSoluong</p>
+            </div>
+
+            <div class="cart_subtotal">
+                <p style="font-family:monospace;">Thành tiền</p>
+                <p class="cart_amount">@ViewBag.TongTien</p>
+            </div>
+            <div class="checkout_btn">
+                <a style="font-family:monospace;" href="@Url.Action("XoaTatCa", "Card")">Xóa giỏ hàng</a>
+                <a style="font-family:monospace;" href="@Url.Action("DatHang", "Card")">Tiến hành đặt hàng</a>
+            </div>
+        </div>
+    </div>
+</div>

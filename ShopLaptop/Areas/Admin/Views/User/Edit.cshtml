@@ -1,0 +1,70 @@
+﻿@model ShopLaptop.Models.DBContext.User
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header"><h3 class="text-center font-weight-light my-4">Chỉnh sửa</h3></div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Edit", "User", FormMethod.Post))
+                    {
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputFirstName">Tài khoản</label>
+                                    <div class="form-control py-4"> @Html.DisplayFor(model => model.UserName)</div>
+                                    @*@Html.DisplayFor(model => model.UserName, new { @class = "form-control py-4"})*@
+                                    @*<input class="form-control py-4" id="inputFirstName" type="text" placeholder="Enter first name" />*@
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputLastName">Họ tên</label>
+                                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control py-4", @placeholder = "Nhập họ tên" })
+                                    @*<input class="form-control py-4" id="inputLastName" type="text" placeholder="Enter last name" />*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputFirstName">Email</label>
+                                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control py-4", @type = "email", @placeholder = "Nhập Email" })
+                                    @*<input class="form-control py-4" id="inputFirstName" type="text" placeholder="Enter first name" />*@
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="small mb-1" for="inputLastName">Số điện thoại</label>
+                                    @Html.TextBoxFor(model => model.Phone, new { @class = "form-control py-4", @placeholder = "Nhập số điện thoại" })
+                                    @*<input class="form-control py-4" id="inputLastName" type="text" placeholder="Enter last name" />*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputEmailAddress">Địa chỉ</label>
+                            @Html.TextBoxFor(model => model.Address, new { @class = "form-control py-4", @placeholder = "Nhập địa chỉ" })
+                            @*<input class="form-control py-4" aria-describedby="emailHelp" placeholder="Enter email address" />*@
+                        </div>
+
+                        <div class="form-group mt-4 mb-0">
+                            <input type="submit" value="Lưu" class="btn btn-primary btn-block" />
+                            @*<a class="btn btn-primary btn-block" href="login.html">Create Account</a>*@
+                        </div>
+                    }
+                    <form>
+                    </form>
+                </div>
+                <div>
+                    @Html.ActionLink("Trở về danh sách", "Index")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
